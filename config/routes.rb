@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+  
+  namespace :public do
+    get 'items/index'
+    get 'items/show'
+  end
   devise_for :customers,skip: [:passwords],controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -9,12 +14,5 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
-  namespace :public do
-    resources :cart_items,only: [:index,:create,:update,:destroy] do
-      collection do
-        delete "all_destroy"   #パスが　all_destroy_cart_items_path, method: :delete　となる
-      end 
-    end
-  end
-    
+
 end
