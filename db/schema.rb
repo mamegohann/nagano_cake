@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 2022_12_16_030057) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "customer_id", null: false　#カート所有者(メンバー)ID(FK)
-    t.integer "item_id", null: false　#商品詳細ページから引き渡すID(FK)
-    t.integer "quantity", null: false　#カート内商品の数
+    t.integer "customer_id", null: false
+    t.integer "item_id", null: false
+    t.integer "quantity", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
