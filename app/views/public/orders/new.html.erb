@@ -1,0 +1,13 @@
+<h4>支払い方法</h4>
+<%= select :payment_method,:name,Order.payment_methods.keys.to_a %>
+<%= select :payment_method,:name,Order.payment_methods.values.to_a %>
+
+<!--<h4>お届け先</h4>-->
+<!--<div class="field">-->
+<!--    <%# %w(人参 玉ねぎ ピーマン にんにく ターメリック じゃがいも).each.with_index do |ingredient,i| %>-->
+<!--    <label>-->
+<!--      <%#= check_box_tag 'samurai[ingredients][]', ingredient,false,id:"samurai_ingredients_#{i}"%>-->
+<!--      <%#= ingredient %>-->
+<!--    </label>-->
+<!--    <%# end %>-->
+<!--  </div>-->
