@@ -1,9 +1,5 @@
 <header>
-<<<<<<< Updated upstream
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-=======
   <nav class="navbar navbar-expand-lg navbar-dark bg-info">
->>>>>>> Stashed changes
     <div class="container">
       <a class="navbar-brand" href="/"><span>ながのCAKE</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,17 +8,6 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
-<<<<<<< Updated upstream
-          <li><%= link_to customer_session_path(current_customer),class: 'btn btn-outline-warning' do %> マイページ <% end %></li>
-          <li><%=  link_to customer_session_path,class: 'btn btn-outline-warning' do %> 商品一覧 <% end %></li>
-          <li><%=  link_to items_path ,class: 'btn btn-outline-warning' do %> カート <% end %></li>
-          <li><%= link_to destroy_customer_session_path, method: :delete,class: 'btn btn-outline-warning' do %> ログアウト <% end %></li>
-        <% else %>
-          <li><%= link_to root_path,class: 'btn btn-outline-warning' do %> About <% end %>
-          <li><%= link_to items_path,class: 'btn btn-outline-warning' do %> 商品一覧 <% end %>
-          <li><%= link_to new_customer_registration_path,class: 'btn btn-outline-warning' do %> 新規登録 <% end %>
-          <li><%= link_to new_admin_session_path ,class: 'btn btn-outline-warning' do %> ログイン <% end %>
-=======
           <li><%= link_to customers_path(current_customer),class: 'btn btn-outline-dark' do %> マイページ <% end %></li>
           <li><%= link_to items_path,class: 'btn btn-outline-dark' do %> 商品一覧 <% end %></li>
           <li><%= link_to cart_items_path ,class: 'btn btn-outline-dark' do %></i> カート <% end %></li>
@@ -32,7 +17,6 @@
           <li><%= link_to items_path,class: 'btn btn-outline-light' do %> 商品一覧 <% end %></li>
           <li><%= link_to new_customer_registration_path,class: 'btn btn-outline-light' do %> 新規登録 <% end %></li>
           <li><%= link_to new_customer_session_path ,class: 'btn btn-outline-light' do %> ログイン <% end %></li>
->>>>>>> Stashed changes
         <% end %>
         </ul>
       </div>

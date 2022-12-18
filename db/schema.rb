@@ -11,8 +11,11 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 ActiveRecord::Schema.define(version: 2022_12_16_030057) do
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 ActiveRecord::Schema.define(version: 2022_12_16_074322) do
