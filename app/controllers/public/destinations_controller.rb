@@ -1,6 +1,7 @@
 class Public::DestinationsController < ApplicationController
   
   def index
+    @destination = Destination.new
   end
 
   def edit

@@ -1,2 +1,30 @@
-<h1>Public::Destinations#index</h1>
-<p>Find me in app/views/public/destinations/index.html.erb</p>
+<h2>配送先登録/一覧</h2>
+<%= form_with model: @destination do |f| %>
+<p>
+  郵便番号（ハイフンなし）
+  <%= f.text_field :destination_postal_code %>
+</p>
+<p>
+  住所
+  <%= f.text_field :destination_area %>
+</p>
+<p>
+  宛名
+  <%= f.text_field :destination_name %>
+</p>
+<div><%= f.submit "新規登録", class: "btn btn-success" %></div>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
+  </thead>
+</table>
