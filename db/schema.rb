@@ -10,14 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-ActiveRecord::Schema.define(version: 2022_12_16_030057) do
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 ActiveRecord::Schema.define(version: 2022_12_16_074322) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -104,5 +96,4 @@ ActiveRecord::Schema.define(version: 2022_12_16_074322) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-end
 end
