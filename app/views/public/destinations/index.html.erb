@@ -1,30 +1,48 @@
-<h2>配送先登録/一覧</h2>
-<%= form_with model: @destination do |f| %>
-<p>
-  郵便番号（ハイフンなし）
-  <%= f.text_field :destination_postal_code %>
-</p>
-<p>
-  住所
-  <%= f.text_field :destination_area %>
-</p>
-<p>
-  宛名
-  <%= f.text_field :destination_name %>
-</p>
-<div><%= f.submit "新規登録", class: "btn btn-success" %></div>
-<% end %>
+<div class="containar">
+  <div class="row justify-content-center">
+    <div class="col-lg-9 mt-5">
+    <h2>配送先登録 / 一覧</h2><br>
+    <%= form_with model: @destination do |f| %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>郵便番号</th>
-      <th>住所</th>
-      <th>宛名</th>
-      <th></th>
-    </tr>
-    <tr>
-      <td></td>
-    </tr>
-  </thead>
-</table>
+      <table class="table table-borderless">
+        <tr>
+          <td style="width: 20%" >郵便番号（ハイフンなし）</td>
+          <td style="width: 20%"><%= f.text_field :destination_postal_code, class: "form-control" %></td>
+          <td style="width: 20%"></td>
+          <td style="width: 20%"></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td colspan="2"><%= f.text_field :destination_area, class: "form-control" %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>宛名</td>
+          <td><%= f.text_field :destination_name, class: "form-control" %></td>
+          <td></td>
+          <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+        </tr>
+      </table>
+    <% end %>
+
+      <table class="table table-bordered border-dark">
+        <thead>
+          <tr class="table-secondary">
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+            <th></th>
+          </tr>
+          <% @destinations.each do |destinaiton| %>
+          <tr>
+            <td><%= destination.destination_postal_code %></td>
+            <td><%= destination.destination_area %></td>
+            <td><%= destination.destinaiton_name %></td>
+            <td><%= link_to "編集", edit_destination_path(destination.id), class: "btn btn-success" %><%= link_to "削除", destination_path, method: :delete %></td>
+          </tr>
+          <% end %>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
