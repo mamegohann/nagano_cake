@@ -1,6 +1,6 @@
 <h2 class="text-center" >ジャンル編集</h2>
 
-  <%= form_with model: @genre do |f| %>
+  <%= form_with model: @genre, url: edit_admin_genre_path do |f| %>
   <div>
     ジャンル名
       <%= f.text_field :name  %>
