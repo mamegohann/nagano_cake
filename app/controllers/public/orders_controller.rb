@@ -12,13 +12,13 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
    
-    if params[:order][:addresses] == "addresses"
+    if params[:order][:destination] == "destination"
       @order.postal_code = current_customer.postal_code
       @order.address     = current_customer.address
       @order.name        = current_customer.name
 
-    else params[:order][:addresses] == "destinations"
-      ship = ShippingAddress.find(params[:order][:destinations])
+    else params[:order][:destination] == "destinations"
+      ship = ShippingAddress.find(params[:order][:destination])
       @order.postal_code = ship.destination_postal_code
       @order.address     = ship.destination_address
       @order.name        = ship.destination_name
@@ -46,11 +46,11 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:quantity, :item_id, :payment_method, :postal_code, :address, :name, :total_price)
+    params.require(:order).permit(:quantity, :item_id, :payment_method, :destination_postal_code, :destination_address, :destination_name, :total_price)
   end
   
-  def address_params
-    params.require(:order).permit(:postal_code, :address, :name)
+  def destination_params
+    params.require(:order).permit(:destination_address, :destination_name, :destination_postal_code)
   end
   
 end
