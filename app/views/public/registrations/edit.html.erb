@@ -8,17 +8,17 @@
     <%= f.label :名前（姓） %><br />
     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :名前（名） %><br />
     <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :フリガナ（セイ） %><br />
     <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :フリガナ（メイ） %><br />
     <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
@@ -28,17 +28,17 @@
     <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :郵便番号（ハイフンなし） %><br />
     <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :住所 %><br />
     <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :電話番号（ハイフンなし） %><br />
     <%= f.text_field :tel_number, autofocus: true, autocomplete: "tel_number" %>
@@ -60,7 +60,7 @@
   <div class="actions">
     <%= f.submit "編集内容を保存" %>
   </div>
-  
+
 <% end %>
 
 <%= link_to "退会する", quit_customers_path %></div>

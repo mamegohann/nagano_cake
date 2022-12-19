@@ -7,9 +7,6 @@
 </p>
 
 <div>
-<div>
   <%= link_to "退会しない", customers_path %>
-  <%= form_with model: @customer, url: out_customers_path, method: :patch do |f| %>
-    <div><%= f.submit "退会する" %></div>
-  <% end %>
+  <%= link_to "退会する", out_customers_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>
 </div>
