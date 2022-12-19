@@ -5,11 +5,24 @@ class Public::OrdersController < ApplicationController
 	end
 	
 	def check
-	  @cart_items = current_cart
 		@order = Order.new(order_params)
     @order.postal_code = @address.postal_code
-    @order.address = @address.address
-    @order.name = @address.name
+    @order.address     = @address.address
+    @order.name        = @address.name
+    @cart_items = current_customer.cart_items.all
+    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+   
+    if params[:order][:addresses] == "addresses"
+      @order.postal_code = current_customer.postal_code
+      @order.address     = current_customer.address
+      @order.name        = current_customer.name
+
+    else params[:order][:addresses] == "destinations"
+      ship = ShippingAddress.find(params[:order][:destinations])
+      @order.postal_code = ship.destination_postal_code
+      @order.address     = ship.destination_address
+      @order.name        = ship.destination_name
+    end
 	end
 	
 	def over
@@ -33,7 +46,11 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:quantity, :item_id, :payment_method)
+    params.require(:order).permit(:quantity, :item_id, :payment_method, :postal_code, :address, :name, :total_price)
+  end
+  
+  def address_params
+    params.require(:order).permit(:postal_code, :address, :name)
   end
   
 end

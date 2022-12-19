@@ -3,7 +3,7 @@
     <div class="col-lg-9 mt-5">
     <h2>配送先登録 / 一覧</h2><br>
     <%= form_with model: @destination do |f| %>
-    
+
       <table class="table">
         <tr>
           <td style="width: 20%" >郵便番号（ハイフンなし）</td>
@@ -13,7 +13,7 @@
         </tr>
         <tr>
           <td>住所</td>
-          <td colspan="2"><%= f.text_field :destination_area, class: "form-control" %></td>
+          <td colspan="2"><%= f.text_field :destination_address, class: "form-control" %></td>
           <td></td>
         </tr>
         <tr>

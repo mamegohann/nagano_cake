@@ -14,7 +14,7 @@
           <% @cart_items.each do |cart| %>
             <tr>
               <td class="text-left">
-                <%= attachment_image_tag( cart.item, :image, size: "50x40") %>
+                <%= image_tag( cart.item, :image, size: "50x40") %>
                 <%= cart.item.name %>
               </td>
               <td class="text-right">
@@ -24,7 +24,7 @@
                   <%= cart.quantity %>
               </td>
               <td class="text-right">
-                <%= #どうやって計算しようか %>
+                <%= @total.round.to_s(:delimited) %>
               </td>
             </tr>
           <% end %>
@@ -43,7 +43,7 @@
           </tr>
           <tr>
             <th class="info">請求金額</th>
-            <td class="text-right"><%= #出し方の確認 %></td>
+            <td class="text-right"><%= ( @total + @order.postage).round.to_s(:delimited) %></td>
           </tr>
       </table>
     </div>
@@ -58,7 +58,7 @@
         <tr>
           <th  class="info">お届け先</th>
           <td class="text-left">
-            <%= "#どうやるか確認" %>
+            <%= "#{@order.postal_code} #{@order.address} 　#{@order.name}" %>
           </td>
         </tr>
       </table>
