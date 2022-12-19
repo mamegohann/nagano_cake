@@ -18,7 +18,11 @@ Rails.application.routes.draw do
 
   # 会員側のルーティング設定
   scope module: :public do
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+      collection do
+        get 'search'
+      end
+    end
     resources :cart_items, only: [:index,:create,:update,:destroy] do
       collection do
         delete "all_destroy"   #パスが　all_destroy_cart_items_path, method: :delete　となる
@@ -35,8 +39,6 @@ Rails.application.routes.draw do
         patch 'out'
       end
     end
-    
-  
   end
   
   namespace :admin do

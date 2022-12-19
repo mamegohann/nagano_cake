@@ -1,7 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-3">
-      
     </div>
     <div class="col-lg-9">
       <h2>
@@ -10,9 +9,11 @@
       </h2>
       <% @items.each do |item| %>
         <div>
-          <%= image_tag item.image, size: '100x100' %>
-          <%= item.name %>
-          <%= item.price %>
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.image, size: '100x100' %>
+            <%= item.name %>
+            <%= item.price %>
+          <% end %>
         </div>  
       <% end %>
     </div>
