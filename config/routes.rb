@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :items,only: [:index,:new,:create,:show,:edit,:update,]
+  end
+  
   namespace :public do
     get 'customers/show'
   end
@@ -15,7 +19,7 @@ Rails.application.routes.draw do
   devise_for :admin,skip: [:registrations, :passwords],controllers: {
     sessions: "admin/sessions"
   }
-
+  
   # 会員側のルーティング設定
   scope module: :public do
     resources :items, only: [:index, :show]
