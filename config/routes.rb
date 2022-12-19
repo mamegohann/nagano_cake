@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    resources :items,only: [:index,:new,:create,:show,:edit,:update,]
-  end
   
   namespace :public do
     get 'customers/show'
@@ -39,8 +36,13 @@ Rails.application.routes.draw do
         patch 'out'
       end
     end
-
+    
+  
   end
-
+  
+  namespace :admin do
+    resources :genres
+    resources :items,only: [:index,:new,:create,:show,:edit,:update,]
+  end
 
 end
