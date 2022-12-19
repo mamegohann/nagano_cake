@@ -19,17 +19,17 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.new(order_params)
     @order.save
     @cart_items = current_cart
-    @cart_items.all_destroy# 注文確定後カートを空にする
-	end
-
-	def index
+    @cart_items.all_destroy# 注文確定後カートを空にす
+  end
+  
+  def index
     @orders = current_customer.orders
-	end
-
-	def show
-	  @order = Order.find(params[:id])
-	end
-
+  end
+  
+  def show
+    @order = Order.find(params[:id])
+  end
+  
   private
 
   def order_params
