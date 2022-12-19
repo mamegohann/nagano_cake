@@ -1,0 +1,73 @@
+<h2 class="head-line text-center">注文情報確認</h2>
+<div calss="row">
+  <div class="col-xs-8">
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr class="text-left">
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart| %>
+            <tr>
+              <td class="text-left">
+                <%= attachment_image_tag( cart.item, :image, size: "50x40") %>
+                <%= cart.item.name %>
+              </td>
+              <td class="text-right">
+                <%= cart.item.tax_price %>
+              </td>
+              <td class="text-right">
+                  <%= cart.quantity %>
+              </td>
+              <td class="text-right">
+                <%= #小計の出し方を確認 %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-4">
+      <table class="table table-hove table-bordered">
+          <tr>
+            <th class="info">送料</th>
+            <td class="text-right col-xs-5"><%= @order.postage %></td>
+          </tr>
+          <tr>
+            <th class="info">商品合計</th>
+            <td class="text-right"><%= total_price(@cart_items) %></td>
+          </tr>
+          <tr>
+            <th class="info">請求金額</th>
+            <td class="text-right"><%= #出し方の確認 %></td>
+          </tr>
+      </table>
+    </div>
+    <div class="col-xs-9">
+      <table class="table table-hover table-bordered">
+        <tr>
+          <th  class="info">支払方法</th>
+          <td class="text-left">
+            <%= @order.payment_method %>
+          </td>
+        </tr>
+        <tr>
+          <th  class="info">お届け先</th>
+          <td class="text-left">
+            <%= "#どうやるか確認" %>
+          </td>
+        </tr>
+      </table>
+
+      <!-- 表示とformを分けて記入 -->
+      <div class ="col-xs-12">
+        <%= form_with model: @order, url: customers_orders_path, method: :post do |f| %>
+          <%= f.submit "注文を確定する", class: "btn btn-success center-block col-xs-5" %>
+      </div>
+    <% else %>
+  </div>
+</div>
