@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-lg-9 mt-5">
     <h2>配送先登録 / 一覧</h2><br>
-    <%= form_with model: @destination do |f| %>
+    <%= form_with model: @destination, method: :post  do |f|%>
 
       <table class="table table-borderless">
         <tr>
@@ -13,7 +13,7 @@
         </tr>
         <tr>
           <td>住所</td>
-          <td colspan="2"><%= f.text_field :destination_area, class: "form-control" %></td>
+          <td colspan="2"><%= f.text_field :destination_address, class: "form-control" %></td>
           <td></td>
         </tr>
         <tr>
@@ -33,12 +33,15 @@
             <th>宛名</th>
             <th></th>
           </tr>
-          <% @destinations.each do |destinaiton| %>
+          <% @destinations.each do |destination| %>
           <tr>
             <td><%= destination.destination_postal_code %></td>
-            <td><%= destination.destination_area %></td>
-            <td><%= destination.destinaiton_name %></td>
-            <td><%= link_to "編集", edit_destination_path(destination.id), class: "btn btn-success" %><%= link_to "削除", destination_path, method: :delete %></td>
+            <td><%= destination.destination_address %></td>
+            <td><%= destination.destination_name %></td>
+            <td>
+              <%= link_to "編集", edit_destination_path(destination.id), class: "btn btn-success" %>
+              <%= link_to "削除", destination_path(destination.id), method: :delete, class: "btn btn-danger" %>
+            </td>
           </tr>
           <% end %>
         </thead>
