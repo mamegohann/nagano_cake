@@ -35,8 +35,12 @@ Rails.application.routes.draw do
         patch 'out'
       end
     end
-
+    
+  
   end
-
+  
+  namespace :admin do
+    resources :genres
+  end
 
 end

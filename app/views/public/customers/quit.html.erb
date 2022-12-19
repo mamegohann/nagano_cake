@@ -1,0 +1,15 @@
+<h2>本当に退会しますか？</h2>
+
+<p>
+  退会すると、館員登録情報や</br>
+  これまでの購入履歴が閲覧できなくなります。</br>
+  退会する場合は、『退会する』をクリックしてください。
+</p>
+
+<div>
+<div>
+  <%= link_to "退会しない", customers_path %>
+  <%= form_with model: @customer, url: out_customers_path, method: :patch do |f| %>
+    <div><%= f.submit "退会する" %></div>
+  <% end %>
+</div>
