@@ -1,23 +1,31 @@
-<h2>ログイン</h2>
+<div class="row">
+  <div class="col-xs-12 mx-auto">
+    <div class="text-center p-4">
+      <h2><b>ログイン</b></h2>
+    </div>
 
-<h3>会員の方はこちらからログイン</h3>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <h3>会員の方はこちらからログイン</h3>
+    
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    
+      <div class="field form-group col-12 p-4">
+        <%= f.label :"メールアドレス", class: "col-5 control-label" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-6" %>
+      </div>
+    
+      <div class="field form-group col-12">
+        <%= f.label :"パスワード", class: "col-5 control-label" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "col-6" %>
+      </div>
+    
+      <div class="actions text-center p-3 pb-5">
+        <%= f.submit "ログイン", class: "btn btn-primary col-4 mr-5" %>
+      </div>
+    <% end %>
+    
+    <h3>会員登録がお済みでない方</h3>
+    <div class="text-center p-3">
+      <h5><b><%= render "public/shared/links" %></b></h5>から新規登録を行ってください。
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-
-<h3>会員登録がお済みでない方</h3>
-
-<%= render "public/shared/links" %>から新規登録を行ってください。
+</div>
