@@ -1,38 +1,40 @@
 class Public::OrdersController < ApplicationController
   
   def new
-  	@order = Order.new
-	end
-	
-	def check
-		@order = Order.new(order_params)
-    @order.postal_code = @address.postal_code
-    @order.address     = @address.address
-    @order.name        = @address.name
+    @order = Order.new
+  end
+
+  def check
+    @order = Order.new(order_params)
     @cart_items = current_customer.cart_items.all
-    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+    @total_price = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
    
-    if params[:order][:destination] == "destination"
+    if params[:order][:destination] == "address"
       @order.postal_code = current_customer.postal_code
       @order.address     = current_customer.address
       @order.name        = current_customer.name
 
-    else params[:order][:destination] == "destinations"
-      ship = ShippingAddress.find(params[:order][:destination])
-      @order.postal_code = ship.destination_postal_code
-      @order.address     = ship.destination_address
-      @order.name        = ship.destination_name
+    elsif params[:order][:destination] == "destination_address"
+      shipping = Destination.find(params[:order][:destination_address])
+      @order.postal_code = shipping.postal_code
+      @order.address     = shipping.address
+      @order.name        = shipping.name
+    
+    elsif params[:order][:destination] == "new_address"
+      @order.postal_code = params[:order][:postal_code]
+      @order.address     = params[:order][:address]
+      @order.name        = params[:order][:name]
     end
-	end
-	
-	def over
-	end
-
-	def create
+  end
+  
+  def over
+  end
+  
+  def create
     @order = current_customer.orders.new(order_params)
     @order.save
     @cart_items = current_cart
-    @cart_items.all_destroy# 注文確定後カートを空にす
+    @cart_items.all_destroy
   end
   
   def index
@@ -46,11 +48,11 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:quantity, :item_id, :payment_method, :destination_postal_code, :destination_address, :destination_name, :total_price)
+    params.require(:order).permit(:quantity, :item_id, :payment_method, :postal_code, :address, :name, :total_price)
   end
   
   def destination_params
-    params.require(:order).permit(:destination_address, :destination_name, :destination_postal_code)
+    params.require(:order).permit(:address, :name, :postal_code)
   end
   
 end
