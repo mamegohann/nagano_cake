@@ -22,10 +22,10 @@
                 <% @cart_items.each do |cart_item| %>
                   <tr>
                     <td>
-                      <%= attachment_image_tag(cart_item.item, :image, size: "60x50", fallback: "no_image.jpg") %> <!--商品画像-->
+                      <%= image_tag cart_item.item.get_image(100,100) %> <!--商品画像-->
                       <%= cart_item.item.name %> <!--商品名-->
                     </td>
-                    <td><%= cart_item.item.with_tax_price%></td> <!--商品単価(価格×1.1)-->
+                    <td><%= cart_item.item.add_tax_price %></td> <!--商品単価(価格×1.1)-->
                     <td>
                       <%= form_with model: cart_item, url: cart_item_path(cart_item), local: true, method: :patch do |f| %>
                         <%= f.number_field :quantity, min: 1, max:10, id: "quantity_cart"%>

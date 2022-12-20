@@ -21,8 +21,10 @@ class Public::CartItemsController < ApplicationController
 
         # もしカート内に「同じ」商品がない場合は通常の保存処理
         elsif @cart_item.save
-            　redirect_to cart_items_path
-        else　# 保存できなかった場合
+
+            redirect_to cart_items_path
+        else # 保存できなかった場合
+
             @cart_items = current_customer.cart_items.all
             render 'index'
         end
@@ -32,13 +34,13 @@ class Public::CartItemsController < ApplicationController
         cart_item = CartItem.find(params[:id])
         cart_item.destroy
         @cart_items = CartItem.all
-        　render 'index'
+        redirect_to cart_items_path
     end
 
     def all_destroy  #カート内全て削除
         cart_items = CartItem.all
         cart_items.destroy_all
-        　render 'index'
+        redirect_to cart_items_path
     end
 
   private

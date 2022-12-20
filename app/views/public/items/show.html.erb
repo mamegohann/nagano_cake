@@ -4,7 +4,9 @@
 
     </div>
     <div class="col-lg-4">
-      <%= image_tag @item.image %>
+
+      <%= image_tag @item.get_image(100,100) %>
+
     </div>
     <div class="col-lg-5">
       <div>
@@ -14,6 +16,11 @@
       <div>
         <p><%= @item.price %> <span> (税込）</span></p>
       </div>
+      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.select :quantity, *[1..10] %>
+        <%= f.submit "カートに入れる", class: "btn btn-success" %>
+      <% end %>
     </div>
   </div>
 </div>
