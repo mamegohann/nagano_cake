@@ -10,7 +10,7 @@ class Public::DestinationsController < ApplicationController
   end
   
   def create
-    destination = Destination.new
+    destination = Destination.new(destination_params)
     destination.customer_id = current_customer.id
     destination.save
     redirect_to destinations_path
@@ -18,7 +18,7 @@ class Public::DestinationsController < ApplicationController
   
   def update
     destination = Destination.find(params[:id])
-    destination.update
+    destination.update(destination_params)
     redirect_to destinations_path
   end
   
@@ -28,4 +28,9 @@ class Public::DestinationsController < ApplicationController
     redirect_to destinations_path
   end
   
+  private
+  
+  def destination_params
+    params.require(:destination).permit(:destination_address, :destination_name, :destination_postal_code)
+  end
 end

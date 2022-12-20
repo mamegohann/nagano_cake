@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
   
+  namespace :admin do
+    get 'orders/show'
+  end
   namespace :public do
     get 'customers/show'
   end
-  namespace :public do
-    get 'destinations/index'
-    get 'destinations/edit'
-  end
+  
   devise_for :customers,skip: [:passwords],controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   
   # 会員側のルーティング設定
   scope module: :public do
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] 
     resources :cart_items, only: [:index,:create,:update,:destroy] do
       collection do
         delete "all_destroy"   #パスが　all_destroy_cart_items_path, method: :delete　となる
@@ -29,20 +29,23 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     resources :orders
     resources :destinations
-
     resource :customers, only: [:show] do
       collection do
         get 'quit'
         patch 'out'
       end
     end
-    
-  
   end
   
   namespace :admin do
     resources :genres
-    resources :items,only: [:index,:new,:create,:show,:edit,:update,]
+    resources :items, only: [:index,:new,:create,:show,:edit,:update,]
+    resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
   end
-
+  
+  namespace :admin do
+    resources :customers, only: [:index,:show,:edit,:update]
+  end
+  
 end
