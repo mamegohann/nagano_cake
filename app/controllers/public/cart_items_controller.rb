@@ -19,10 +19,8 @@ class Public::CartItemsController < ApplicationController
 
             @cart_item.save
             redirect_to cart_items_path
-
         # もしカート内に「同じ」商品がない場合は通常の保存処理
         elsif @cart_item.save
-
             redirect_to cart_items_path
         else # 保存できなかった場合
             @cart_items = current_customer.cart_items.all
@@ -31,7 +29,9 @@ class Public::CartItemsController < ApplicationController
     end
     
     def update
-        if cart_iteme.update_cart_item(item_id: params[:item_id], quantity: params[:quantity])
+        cart_item = CartItem.find(params[:id])
+        if cart_item.update(cart_item_quantity)
+        redirect_to cart_items_path   
       # カートアイテムの更新に成功した時の処理
         else
             render 'index'
@@ -56,6 +56,10 @@ class Public::CartItemsController < ApplicationController
 
     def cart_item_params
         params.require(:cart_item).permit(:item_id, :price, :quantity)
+    end
+    
+    def cart_item_quantity
+        params.require(:cart_item).permit(:quantity)
     end
 
 end
