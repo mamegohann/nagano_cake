@@ -27,7 +27,12 @@ Rails.application.routes.draw do
     end
     root to: 'homes#top'
     get 'about' => 'homes#about'
-    resources :orders
+    resources :orders,only: [:new,:index,:show,:create] do
+        collection do
+          post 'check'
+          get 'over'
+        end
+    end
     resources :destinations
     resource :customers, only: [:show] do
       collection do
