@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <div class="row my-4">
+        <div class="col-6">
+          <h3 class="">会員一覧</h3>
+        </div>
+          <table class="table table-secondary table-inverse">
+            <thead>
+              <tr>
+                <th>会員ID</th>
+                <th>氏名</th>
+                <th>メールアドレス</th>
+                <th>ステータス</th>
+              </tr>
+            </thead>
+            <tbody>
+            	<% @customers.each do |customer| %>
+              	<tr>
+                  <td><%= customer.id %></td>
+                  <td><%= link_to admin_customer_path(customer.id) do %>
+                      <%= customer.name %>
+                      <% end %>
+                  </td>
+                  <td><%= customer.email %></td>
+                  <td>
+                    <% if customer.status == true %>
+                      <p>有効</p>
+                     <% elsif item.status == false %>
+                      <p>退会</p>
+                  	<% end %>
+                  </td>
+                </tr>
+              <% end %>
+              <%= paginate customers %>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
