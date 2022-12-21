@@ -29,6 +29,15 @@ class Public::CartItemsController < ApplicationController
             render 'index'
         end
     end
+    
+    def update
+        if cart_iteme.update_cart_item(item_id: params[:item_id], quantity: params[:quantity])
+      # カートアイテムの更新に成功した時の処理
+        else
+            render 'index'
+      # 失敗した時の処理
+        end
+    end
 
     def destroy
         cart_item = CartItem.find(params[:id])
