@@ -1,9 +1,14 @@
-<h2 class="head-line title_h2 text-center admin_product_index">商品一覧</h2>
+<h2 class="head-line title_h2 text-center admin_product_index"><b>商品一覧<</h2>
+
+<%= link_to new_admin_item_path, class: "btn btn-warning pull-right new_product float-right p-3 m-4" do %>
+  <i class="fas fa-plus"></i>
+<% end %>
+
 <div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
+  <div class="col-8 text-center mx-auto p-5">
     <table class="table table-hover table-bordered table-condensed">
       <thead>
-        <tr class="info">
+        <tr class="info bg-info">
           <th>商品ID</th>
           <th>商品名</th>
           <th>税抜価格</th>
@@ -14,7 +19,7 @@
       <tbody>
 				<% @items.each do |item| %>
   				<tr>
-            <td class="info col-xs-1">
+            <td class="info col-auto">
               <%= item.id %>
             </td>
             <td class="text-left">
@@ -22,13 +27,13 @@
                 <%= item.name %>
               <% end %>
             </td>
-            <td class="text-right col-xs-1">
+            <td class="text-right col-auto">
               ¥<%= item.price.to_s(:delimited) %>
             </td>
-            <td class="text-left col-xs-3">
+            <td class="text-left col-auto">
               <%= item.genre.name %>
             </td>
-            <td class="col-xs-2">
+            <td class="col-auto">
               <% if item.status == true %>
       					<p>販売中</p>
       				<% elsif item.status == false %>
