@@ -16,7 +16,7 @@ class Public::CartItemsController < ApplicationController
             cart_item.quantity += params[:cart_item][:quantity].to_i
            # cart_item.quantityに今追加したparams[:cart_item][:quantity]を加える
                                                               #.to_iとして数字として扱う
-            cart_item.save
+            @cart_item.save
             redirect_to cart_items_path
 
         # もしカート内に「同じ」商品がない場合は通常の保存処理
