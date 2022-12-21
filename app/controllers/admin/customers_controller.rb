@@ -1,6 +1,5 @@
 class Admin::CustomersController < ApplicationController
-  before_action :logged_in_customer, only: [:index, :show, :edit, :update]
-  before_action :correct_customer,   only: [:edit, :update]
+  
 
   def index
     @customers = Customer.page(params[:page])

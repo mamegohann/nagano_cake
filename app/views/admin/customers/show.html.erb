@@ -38,7 +38,12 @@
             </tr>
             <tr>
               <th>会員ステータス</th>
-              <th><%= @customer.status %></th>
+              <th>
+                <%= if @customer.status == true %>
+                  <b><%= f.label :"有効",class="text-primary" %></b>
+                <% elsif @customer.status == false %>
+                  <b><%= f.label :"無効",class="text-primary" %></b>
+              </th>
             </tr>
             <tr>
               <th></th>
