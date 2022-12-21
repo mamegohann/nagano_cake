@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    customers_path
+    if customer_signed_in?
+      customers_path
+    elsif admin_signed_in?
+      admin_orders_path
+    else
+    end
   end
 
   def after_sign_out_path_for(resource)
