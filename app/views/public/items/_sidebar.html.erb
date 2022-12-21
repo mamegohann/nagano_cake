@@ -1,16 +1,16 @@
 <div>
   <table class="table table-bordered border-dark">
-    <thead>ジャンル検索</thead>
+    <thead><p class="text-center mt-5">ジャンル検索</p></thead>
     <tbody>
       <% genres.each do |genre| %>
       <tr>
         <td>
-          <%= link_to items_path(genre_id: genre.id) do %>
+          <%= link_to items_path(genre_id: genre.id), class: "text-decoration-none text-secondary" do %>
             <%= genre.name %>
           <% end %>
         </td>
       </tr>
-    <% end %>
+    　<% end %>
     </tbody>
   </table>
 </div>
