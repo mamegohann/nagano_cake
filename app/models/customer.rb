@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
   has_many :cart_items
 
   has_many :destinations
-         
+
   def active_for_authentication?
     super && (status == false)
   end
