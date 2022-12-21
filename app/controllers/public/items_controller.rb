@@ -1,14 +1,18 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.page(params[:page]).per(8)
     @genres = Genre.all
-    @genre = Genre.find_by(params[:genre_id])
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @items = @genre.items.where(status: 1).page(params[:page]).reverse_order
+    else
+      @items = Item.where(status: 1).page(params[:page]).reverse_order
+    end
   end
 
   def show
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
   end
-  
+
 end
