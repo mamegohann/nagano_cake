@@ -40,7 +40,9 @@ class Public::CartItemsController < ApplicationController
     def all_destroy  #カート内全て削除
         cart_items = CartItem.all
         cart_items.destroy_all
-        redirect_to cart_items_path
+
+        　render 'index'
+
     end
 
   private
