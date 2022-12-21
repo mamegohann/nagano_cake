@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <div class="row my-4">
+        <div class="col-6">
+          <h3 class="">
+            <%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集
+          </h3>
+        </div>
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputLast_name3" class="col-sm-2 col-form-label">氏名</label>
+                <div class="col-sm-10">
+                  <input type="last_name" class="form-control" id="inputLast_name3" placeholder="Last_name">
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputFirst_name3" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                  <input type="first_name" class="form-control" id="inputFirst_name3" placeholder="First_name">
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputLast_name_kana3" class="col-sm-2 col-form-label">フリガナ</label>
+                <div class="col-sm-10">
+                  <input type="last_name_kana" class="form-control" id="inputLast_name_kana3" placeholder="Last_name_kana">
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputfirst_name_kana3" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                  <input type="first_name_kana" class="form-control" id="inputFirst_name_kana3" placeholder="First_name_kana">
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPostal_code3" class="col-sm-2 col-form-label">郵便番号</label>
+                <div class="col-sm-10">
+                  <input type="postal_code" class="form-control" id="inputPostal_code3" placeholder="Postal_code">
+                </div>
+              </div>
+            </div>
+              <div class="form-group">
+                <label for="inputAddress3" class="col-sm-2 col-form-label">住所</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputAddress3" placeholder="1234 Main St">
+                </div>  
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputTel_numbere3" class="col-sm-2 col-form-label">電話番号</label>
+                <div class="col-sm-10">
+                  <input type="tel_numbere" class="form-control" id="inputTel_numbere3" placeholder="Tel_numbere">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">メールアドレス</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :"会員ステータス", class: "col-sm-6 control-label" %>
+                <%= f.radio_button :status, "true" %>
+                <%= f.label :"有効" %>
+                <%= f.radio_button :status, "false" %>
+                <%= f.label :"退会" %>
+              </div>
+                
+              <div class="actions">
+        	      <%= f.submit "変更を保存", class: "btn btn-success" %>
+              </div>
+          </form>
+
