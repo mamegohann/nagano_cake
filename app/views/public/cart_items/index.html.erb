@@ -9,14 +9,14 @@
             <%= link_to "カートを空にする", all_destroy_cart_items_path, method: :delete,
               class: "btn btn-danger", "data-confirm" => "本当に空にしますか？" %>
           </div>
-          <table class="table table-bordered">
-            <tr>
+          <table>
+             <tr>
               <th>商品名</th>
               <th>単価(税込)</th>
               <th>数量</th>
               <th>小計</th>
               <th></th>
-            </tr>
+             </tr>
               <% total = 0 %> <!--合計金額totalの初期化-->
               <% if current_customer.cart_items.present? %> <!--カート内に商品があった場合-->
                 <% @cart_items.each do |cart_item| %>
@@ -70,6 +70,3 @@
     </div>
   </div>
 </div>
-
-
-

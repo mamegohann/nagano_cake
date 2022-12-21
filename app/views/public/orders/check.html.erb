@@ -24,7 +24,7 @@
                   <%= cart.quantity %>
               </td>
               <td class="text-right">
-                <%= @total.round.to_s(:delimited) %>
+                <%= @total_price.round.to_s(:delimited) %>
               </td>
             </tr>
           <% end %>
@@ -39,11 +39,11 @@
           </tr>
           <tr>
             <th class="info">商品合計</th>
-            <td class="text-right"><%= total_price(@cart_items).to_s(:delimited) %></td>
+            <td class="text-right"><%= @total_price.to_s(:delimited) %></td>
           </tr>
           <tr>
             <th class="info">請求金額</th>
-            <td class="text-right"><%= ( @total + @order.postage).round.to_s(:delimited) %></td>
+            <td class="text-right"><%= @billing.round.to_s(:delimited) %></td>
           </tr>
       </table>
     </div>
@@ -52,21 +52,21 @@
         <tr>
           <th  class="info">支払方法</th>
           <td class="text-left">
-            <%= @order.payment_method %>
+            <%= @order.payment_methods_i18n %>
           </td>
         </tr>
         <tr>
           <th  class="info">お届け先</th>
           <td class="text-left">
-            <%= "#{@order.destination_postal_code} #{@order.destination_address} 　#{@order.destination_name}" %>
+            <%= "#{@order.postal_code} #{@order.address} 　#{@order.name}" %>
           </td>
         </tr>
       </table>
 
       <div class ="col-xs-12">
-        <%= form_with model: @order, url: customers_orders_path, method: :post do |f| %>
+        <%= form_with model: @order, url: over_orders_path, method: :post do |f| %>
           <%= f.submit "注文を確定する", class: "btn btn-success center-block col-xs-5" %>
+        <% end %>
       </div>
-    <% else %>
   </div>
 </div>

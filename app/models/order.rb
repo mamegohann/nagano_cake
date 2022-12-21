@@ -7,7 +7,7 @@ class Order < ApplicationRecord
   enum status: { not_payment: 0, confirm_payment: 1, production: 2, shipping_preparation: 3, shipped: 4 }
   
   def sum_of_price
-    item.price * quantity
+    item.add_tax_price * quantity
   end
   
 end
