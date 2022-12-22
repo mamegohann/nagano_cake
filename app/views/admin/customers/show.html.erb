@@ -39,10 +39,11 @@
             <tr>
               <th>会員ステータス</th>
               <th>
-                <%= if @customer.status == true %>
-                  <b><%= f.label :"有効",class="text-primary" %></b>
-                <% elsif @customer.status == false %>
-                  <b><%= f.label :"無効",class="text-primary" %></b>
+                <% if @customer.status == false %>
+          	      <b class="text-success">　有効</b>
+          		  <% elsif @customer.status == true %>
+          			  <b class="text-success">　退会</b>
+          		  <% end %>
               </th>
             </tr>
             <tr>
