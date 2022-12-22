@@ -52,7 +52,7 @@
         <tr>
           <th  class="info">支払方法</th>
           <td class="text-left">
-            <%= @order.payment_method %>
+            <%= @order.payment_method_i18n %>
           </td>
         </tr>
         <tr>
@@ -64,7 +64,7 @@
       </table>
 
       <div class ="col-xs-12">
-        <%= form_with model: @order, url: over_orders_path, method: :post do |f| %>
+        <%= form_with model: @order, url: over_orders_path, method: :get do |f| %>
           <%= f.submit "注文を確定する", class: "btn btn-success center-block col-xs-5" %>
         <% end %>
       </div>
