@@ -1,5 +1,6 @@
 class Public::OrdersController < ApplicationController
-
+  before_action :authenticate_customer!
+ 
   def new
     @order = Order.new
     @destination = Destination.where(customer:current_customer)
@@ -8,7 +9,8 @@ class Public::OrdersController < ApplicationController
   def check
     @order = Order.new(order_params)
     @cart_items = current_customer.cart_items.all
-    @total_price = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+    @total_price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    @billing = @total_price + @order.postage
 
     if params[:order][:address] == "address"
       @order.postal_code = current_customer.postal_code
@@ -44,6 +46,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   private
