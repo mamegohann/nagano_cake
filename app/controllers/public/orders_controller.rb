@@ -9,7 +9,7 @@ class Public::OrdersController < ApplicationController
   def check
     @order = Order.new(order_params)
     @cart_items = current_customer.cart_items.all
-    @total_price = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+    @total_price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
     @billing = @total_price + @order.postage
 
     if params[:order][:address] == "address"

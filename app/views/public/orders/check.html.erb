@@ -14,11 +14,11 @@
           <% @cart_items.each do |cart| %>
             <tr>
               <td class="text-left">
-                <%= image_tag( cart.item, :image, size: "50x40") %>
+                <%= image_tag cart.item.get_image(40,50) %>
                 <%= cart.item.name %>
               </td>
               <td class="text-right">
-                <%= cart.item.tax_price %>
+                <%= cart.item.add_tax_price %>
               </td>
               <td class="text-right">
                   <%= cart.quantity %>
@@ -52,13 +52,13 @@
         <tr>
           <th  class="info">支払方法</th>
           <td class="text-left">
-            <%= @order.payment_methods_i18n %>
+            <%= @order.payment_method %>
           </td>
         </tr>
         <tr>
           <th  class="info">お届け先</th>
           <td class="text-left">
-            <%= "#{@order.postal_code} #{@order.address} 　#{@order.name}" %>
+            <%= "〒#{@order.postal_code} #{@order.address} #{@order.name}" %>
           </td>
         </tr>
       </table>
