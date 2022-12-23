@@ -3,7 +3,7 @@
     <div class="col-10">
       <div class="row my-4">
         <div class="col-6">
-          <h3 class="">注文履歴一覧</h3>
+          <h3 class="p-3">注文履歴一覧</h3>
         </div>
           <table class="table table-hover">
             <thead>
@@ -17,19 +17,12 @@
             <tbody>
             	<% @orders.each do |order| %>
               	<tr>
-                  <td><%= order.id %></td>
-                  <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
-                  <td><%= order.email %></td>
-                  <td>
-                    <% if customer.status == false %>
-                      <p>有効</p>
-                     <% elsif customer.status == true %>
-                      <p>退会</p>
-                  	<% end %>
-                  </td>
+                  <td><%= l order.created_at %></td>
+                  <td><%= order.name %></td>
+                  <td><%= order.order_details.sum(:quantity) %></td>
+                  <td><%= order.status_i18n %></td>
                 </tr>
               <% end %>
-              <%= paginate @customers %>
             </tbody>
           </table>
       </div>

@@ -4,5 +4,5 @@ class Destination < ApplicationRecord
   def address_display
     '〒' + destination_postal_code + ' ' + destination_address + ' ' + destination_name
   end
-  
+
 end
