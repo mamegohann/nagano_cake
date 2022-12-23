@@ -11,19 +11,20 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @total_price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
     @billing = @total_price + @order.postage
+    @order.total_price = @billing
 
-    if params[:order][:address] == "address"
+    if params[:order][:select_address] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address     = current_customer.address
       @order.name        = current_customer.last_name + current_customer.first_name
 
-    elsif params[:order][:address] == "destination_address"
+    elsif params[:order][:select_address] == "1"
       shipping = Destination.find(params[:order][:destination])
       @order.postal_code = shipping.postal_code
       @order.address     = shipping.address
       @order.name        = shipping.name
 
-    elsif params[:order][:address] == "new_address"
+    elsif params[:order][:select_address] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.address     = params[:order][:address]
       @order.name        = params[:order][:name]

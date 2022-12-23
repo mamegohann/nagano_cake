@@ -64,7 +64,7 @@
       </table>
 
       <div class ="col-xs-12">
-        <%= form_with model: @order, url: orders_path, method: :post do |f| %>
+        <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
           <%= f.submit "注文を確定する", class: "btn btn-success center-block col-xs-5" %>
         <% end %>
       </div>

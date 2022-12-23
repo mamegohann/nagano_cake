@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <div class="row my-4">
+        <div class="col-6">
+          <h3 class="">注文履歴一覧</h3>
+        </div>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>購入日時</th>
+                <th>購入者</th>
+                <th>購入個数</th>
+                <th>注文ステータス</th>
+              </tr>
+            </thead>
+            <tbody>
+            	<% @orders.each do |order| %>
+              	<tr>
+                  <td><%= order.id %></td>
+                  <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
+                  <td><%= order.email %></td>
+                  <td>
+                    <% if customer.status == false %>
+                      <p>有効</p>
+                     <% elsif customer.status == true %>
+                      <p>退会</p>
+                  	<% end %>
+                  </td>
+                </tr>
+              <% end %>
+              <%= paginate @customers %>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
