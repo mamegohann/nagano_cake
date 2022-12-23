@@ -24,18 +24,18 @@
                   <%= order.name %>
                 </td>
                 <td>
-                  <% order.order_items.each do |order_items| %>
-                  	<%= order_items.item.name %><br>
+                  <% order.order_details.each do |order_detail| %>
+                    <%= order_detail.item.name %>
                   <% end %>
                 </td>
                 <td class="text-right">
-                  <%= @billing.to_s(:delimited) %>円
+                  <%= "#{(order.total_price + order.postage).to_s(:delimited)}" %>円
                 </td>
                 <td>
-                  <%= order.order_status %>
+                  <%= order.status_i18n %>
                 </td>
          	      <td>
-                  <%= form_with model: order, url: order_path do |f| %>
+                  <%= form_with model: order, url: order_path(order), method: :get do |f| %>
                     <%= f.submit "表示する", class: "btn btn-info" %>
                   <% end %>
                 </td>
@@ -43,5 +43,6 @@
             <% end %>
           </tbody>
         </table>
+        <%= paginate @orders %>
     </div>
 </div>
