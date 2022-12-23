@@ -15,7 +15,7 @@ class Public::OrdersController < ApplicationController
     if params[:order][:address] == "address"
       @order.postal_code = current_customer.postal_code
       @order.address     = current_customer.address
-      @order.name        = current_customer.name
+      @order.name        = current_customer.last_name + current_customer.first_name
 
     elsif params[:order][:address] == "destination_address"
       shipping = Destination.find(params[:order][:destination])
@@ -36,9 +36,7 @@ class Public::OrdersController < ApplicationController
   def create
     @order = current_customer.orders.new(order_params)
     @order.save
-    flash[:notice] = "ご注文が確定しました。"
-    redirect_to over_orders_path
-    
+
     if params[:order][:address] == "new_address"
       current_customer.destination.new(destination_params)
       current_customer.destination.save
@@ -74,7 +72,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:quantity, :item_id, :payment_method, :postal_code, :address, :name, :total_price)
+    params.permit(:quantity, :item_id, :payment_method, :postal_code, :address, :name, :total_price)
   end
 
   def destination_params

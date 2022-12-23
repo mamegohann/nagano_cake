@@ -58,13 +58,13 @@
         <tr>
           <th  class="info">お届け先</th>
           <td class="text-left">
-            <%= "〒#{@order.postal_code} #{@order.address} #{@order.name}" %>
+            <%= "〒 #{@order.postal_code} #{@order.address} #{@order.name}" %>
           </td>
         </tr>
       </table>
 
       <div class ="col-xs-12">
-        <%= form_with model: @order, url: over_orders_path, method: :get do |f| %>
+        <%= form_with model: @order, url: orders_path, method: :post do |f| %>
           <%= f.submit "注文を確定する", class: "btn btn-success center-block col-xs-5" %>
         <% end %>
       </div>
