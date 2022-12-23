@@ -1,32 +1,46 @@
-<header>
+<header class="shadow-sm">
   <nav class="navbar navbar-expand-lg navbar-dark bg-info">
     <div class="container">
       <a class="navbar-brand" href="/"><span>ながのCAKE</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-        <% if customer_signed_in? %>
-          <li><%= link_to customers_path(current_customer),class: 'btn btn-outline-light' do %> マイページ <% end %></li>
-          <li><%= link_to items_path,class: 'btn btn-outline-light' do %> 商品一覧 <% end %></li>
-          <li><%= link_to cart_items_path ,class: 'btn btn-outline-light' do %></i> カート <% end %></li>
-          <li><%= link_to destroy_customer_session_path, method: :delete,class: 'btn btn-outline-light' do %> ログアウト <% end %></li>
-        <% elsif admin_signed_in? %>
-          <li><%= link_to admin_items_path,class: 'btn btn-outline-light' do %> 商品一覧 <% end %></li>
-          <li><%= link_to admin_customers_path,class: 'btn btn-outline-light' do %> 会員一覧 <% end %></li>
-          <li><%= link_to admin_orders_path,class: 'btn btn-outline-light' do %> 注文履歴一覧 <% end %></li>
-          <li><%= link_to admin_genres_path,class: 'btn btn-outline-light' do %> ジャンル一覧 <% end %></li>
-          <li><%= link_to destroy_admin_session_path, method: :delete,class: 'btn btn-outline-light' do %> ログアウト <% end %></li>
-        <% else %>
-          <li><%= link_to about_path,class: 'btn btn-outline-light' do %> About <% end %></li>
-          <li><%= link_to items_path,class: 'btn btn-outline-light' do %> 商品一覧 <% end %></li>
-          <li><%= link_to new_customer_registration_path,class: 'btn btn-outline-light' do %> 新規登録 <% end %></li>
-          <li><%= link_to new_customer_session_path ,class: 'btn btn-outline-light' do %> ログイン <% end %></li>
-          <li><%= link_to new_admin_session_path ,class: 'btn btn-outline-light' do %> 管理者ログイン <% end %></li>
-        <% end %>
-        </ul>
+      
+        <div class="navbar">
+          
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if customer_signed_in? %>
+              <li><%= link_to customers_path(current_customer),class: 'btn btn-outline-light' do %> マイページ <% end %></li>
+              <li><%= link_to items_path,class: 'btn btn-outline-light' do %> 商品一覧 <% end %></li>
+              <li><%= link_to cart_items_path ,class: 'btn btn-outline-light' do %></i> カート <% end %></li>
+              <li><%= link_to destroy_customer_session_path, method: :delete,class: 'btn btn-outline-light' do %> ログアウト <% end %></li>
+            <% elsif admin_signed_in? %>
+              <li><%= link_to admin_items_path,class: 'btn btn-outline-light' do %> 商品一覧 <% end %></li>
+              <li><%= link_to admin_customers_path,class: 'btn btn-outline-light' do %> 会員一覧 <% end %></li>
+              <li><%= link_to admin_orders_path,class: 'btn btn-outline-light' do %> 注文履歴一覧 <% end %></li>
+              <li><%= link_to admin_genres_path,class: 'btn btn-outline-light' do %> ジャンル一覧 <% end %></li>
+              <li><%= link_to destroy_admin_session_path, method: :delete,class: 'btn btn-outline-light' do %> ログアウト <% end %></li>
+            <% else %>
+              <li><%= link_to about_path,class: 'btn btn-outline-light' do %> About <% end %></li>
+              <li><%= link_to items_path,class: 'btn btn-outline-light' do %> 商品一覧 <% end %></li>
+              <li><%= link_to new_customer_registration_path,class: 'btn btn-outline-light' do %> 新規登録 <% end %></li>
+              <li><%= link_to new_customer_session_path ,class: 'btn btn-outline-light' do %> ログイン <% end %></li>
+              <li><%= link_to new_admin_session_path ,class: 'btn btn-outline-light' do %> 管理者ログイン <% end %></li>
+            <% end %>
+            </ul>
+          </div>
+          
+          <div class="container-fluid">
+            <a class="navbar-brand"></a>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+          </div>
+
       </div>
+      
     </div>
   </nav>
 </header>
