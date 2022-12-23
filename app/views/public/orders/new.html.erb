@@ -15,18 +15,18 @@
             </div>
           <h3 class="col-xs-3 sub-head text-center">お届け先</h3>
             <div class="col-xs-10 text-center">
-              <%= f.radio_button :address, "address" %>
+              <%= f.radio_button :select_address, "address" %>
               <%= f.label :address, "ご自身の住所" %><br>
               <%= "〒#{current_customer.postal_code} #{current_customer.address}" %><br>
               <%= "#{current_customer.last_name} #{current_customer.first_name}" %>
             </div>
   
             <div class="col-xs-10 text-center">
-              <%= f.radio_button :address, "destination" %>
+              <%= f.radio_button :select_address, "destination" %>
               <%= f.label :destination, "登録済住所から選択" %><br>
               <%= f.select :destination_id, options_from_collection_for_select(@destination, :id, :address_display) %><br>
 
-              <%= f.radio_button :address, "new_address" %>
+              <%= f.radio_button :select_address, "new_address" %>
               <%= f.label :new_address, "新しいお届け先" %><br>
 
               <div class="field form-group col-xs-11">
