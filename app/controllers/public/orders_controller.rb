@@ -29,7 +29,7 @@ class Public::OrdersController < ApplicationController
       if params[:order][:postal_code] == ""
          params[:order][:address] == ""
          params[:order][:name] == ""
-         flash[:notice] = "正しい配送先を入力してください。"
+         flash[:alert] = "正しい配送先を入力してください。"
         redirect_to request.referer
       end
       @destination = current_customer.destinations.new

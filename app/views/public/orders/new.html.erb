@@ -4,10 +4,10 @@
       <h5 class="alert alert-secondary text-center"><strong>注文情報入力</strong></h5>
   　　</div>
   </div>
-  <div class="col-4 font-weight-bold bg-warning">
-  <%= flash[:notice] %>
-  </div>
   <% if current_customer.cart_items.present? %>
+  <div class="col-4 font-weight-bold bg-warning">
+  <%= flash[:alert] %>
+  </div>
     <%= form_with model: @order, url: check_orders_path do |f| %>
       <div class="row">
         <div class="col-4">

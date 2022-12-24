@@ -1,65 +1,71 @@
-<div class="container px-5 px-sm-0">
-  <h2 class="alert alert-secondary text-center">注文情報確認</h2>
+<div class="container">
   <div calss="row">
-    <div class="col-7">
-      <table class="table table-bordered">
-        <thead>
-          <tr class="text-left ">
-            <th>商品名</th>
-            <th>単価(税込)</th>
-            <th>数量</th>
-            <th>小計</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @cart_items.each do |cart_item| %>
-            <tr>
-              <td class="text-left">
-                <%= image_tag cart_item.item.get_image(40,50) %>
-                <%= cart_item.item.name %>
-              </td>
-              <td class="text-right ">
-                <%= cart_item.item.add_tax_price %>
-              </td>
-              <td class="text-right">
-                  <%= cart_item.quantity %>
-              </td>
-              <td class="text-right">
-                <%= @total_price.round.to_s(:delimited) %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-4">
-      <table class="table table-bordered">
-          <tr>
-            <th class="info">送料</th>
-            <td class="text-right col-xs-5"><%= @order.postage %></td>
-          </tr>
-          <tr>
-            <th class="info">商品合計</th>
-            <td class="text-right"><%= @total_price.to_s(:delimited) %></td>
-          </tr>
-          <tr>
-            <th class="info">請求金額</th>
-            <td class="text-right"><%= @billing.round.to_s(:delimited) %></td>
-          </tr>
-      </table>
-    </div>
+    <h5 class="alert alert-secondary text-center"><strong>注文情報確認</strong></h5>
+  </div>
+  <div calss="row">
+    <table class="teble">
+      <tr>
+        <td>
+          <div>
+            <table class="table table-bordered ">
+              <tr class="text-left table-secondary">
+                <th>商品名</th>
+                <th>単価(税込)</th>
+                <th>数量</th>
+                <th>小計</th>
+              </tr>
+              <% @cart_items.each do |cart_item| %>
+              <tr>
+                <td class="text-left">
+                  <%= image_tag cart_item.item.get_image(40,50) %>
+                  <%= cart_item.item.name %>
+                </td>
+                <td class="text-right ">
+                  <%= cart_item.item.add_tax_price %>
+                </td>
+                <td class="text-right">
+                    <%= cart_item.quantity %>
+                </td>
+                <td class="text-right">
+                  <%= @total_price.round.to_s(:delimited) %>
+                </td>
+              </tr>
+              <% end %>
+            </table>
+          </div>
+        </td>
+        <td>
+          <div class="col-12">
+            <table class="table table-bordered mr-0" >
+              <tr>
+                <th class="table-secondary">送料</th>
+                <td class="text-right col-xs-5"><%= @order.postage %></td>
+              </tr>
+              <tr>
+                <th class="table-secondary">商品合計</th>
+                <td class="text-right"><%= @total_price.to_s(:delimited) %></td>
+              </tr>
+              <tr>
+                <th class="table-secondary">請求金額</th>
+                <td class="text-right"><%= @billing.round.to_s(:delimited) %></td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
   <div calss="row">
     <div class="col-xs-9">
       <table class="table table-bordered">
         <tr>
-          <th  class="info">支払方法</th>
+          <th  class="table-secondary">支払方法</th>
           <td class="text-left">
             <%= @order.payment_method_i18n %>
           </td>
         </tr>
         <tr>
-          <th  class="info">お届け先</th>
+          <th  class="table-secondary">お届け先</th>
           <td class="text-left">
             〒<%= @order.postal_code %> <%= @order.address %> <%= @order.name + "様" %>
           </td>
