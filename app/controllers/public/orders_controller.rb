@@ -32,9 +32,16 @@ class Public::OrdersController < ApplicationController
          flash[:notice] = "正しい配送先を入力してください。"
         redirect_to request.referer
       end
-      @order.postal_code = params[:order][:postal_code]
-      @order.address     = params[:order][:address]
-      @order.name        = params[:order][:name]
+      @destination = current_customer.destinations.new
+      @destination.destination_postal_code = params[:order][:postal_code]
+      @destination.destination_address     = params[:order][:address]
+      @destination.destination_name        = params[:order][:name]
+      @destination.customer_id = current_customer.id
+      if @destination.save
+        @order.postal_code = @destination.destination_postal_code
+        @order.address     = @destination.destination_address
+        @order.name        = @destination.destination_name
+      end
     end
     @order_new = Order.new
   end
@@ -43,7 +50,6 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    
     @order = current_customer.orders.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
