@@ -24,7 +24,7 @@
               <%= link_to item_path(item.id), class: "text-decoration-none text-secondary align-baseline" do %>
                 <%= image_tag item.get_image(100,100) %><br>
                 <%= item.name %><br>
-                ¥ <%= item.price %>
+                ¥ <%= item.add_tax_price %>
               <% end %>
             </div>
           <% end %>
