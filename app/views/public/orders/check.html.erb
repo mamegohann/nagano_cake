@@ -1,7 +1,8 @@
-<h2 class="head-line text-center">注文情報確認</h2>
-<div calss="row">
-  <div class="col-xs-8">
-      <table class="table table-hover table-bordered">
+<div class="container px-5 px-sm-0">
+  <h2 class="alert alert-secondary text-center">注文情報確認</h2>
+  <div calss="row">
+    <div class="col-7">
+      <table class="table table-bordered">
         <thead>
           <tr class="text-left ">
             <th>商品名</th>
@@ -31,8 +32,8 @@
         </tbody>
       </table>
     </div>
-    <div class="col-xs-4">
-      <table class="table table-hove table-bordered">
+    <div class="col-4">
+      <table class="table table-bordered">
           <tr>
             <th class="info">送料</th>
             <td class="text-right col-xs-5"><%= @order.postage %></td>
@@ -47,8 +48,10 @@
           </tr>
       </table>
     </div>
+  </div>
+  <div calss="row">
     <div class="col-xs-9">
-      <table class="table table-hover table-bordered">
+      <table class="table table-bordered">
         <tr>
           <th  class="info">支払方法</th>
           <td class="text-left">
@@ -58,12 +61,12 @@
         <tr>
           <th  class="info">お届け先</th>
           <td class="text-left">
-            〒<%= @order.postal_code %> <%= @order.address %> <%= @order.name %>
+            〒<%= @order.postal_code %> <%= @order.address %> <%= @order.name + "様" %>
           </td>
         </tr>
       </table>
 
-      <div class ="col-xs-12">
+      <div class ="col-xs-12 text-right">
         <%= form_with model: @order_new, url: orders_path, method: :post do |f| %>
           <%= f.hidden_field :postal_code, value: @order.postal_code %>
           <%= f.hidden_field :address, value: @order.address %>
@@ -73,5 +76,6 @@
           <%= f.submit "注文を確定する", class: "btn btn-success center-block col-xs-5" %>
         <% end %>
       </div>
+    </div>
   </div>
 </div>
