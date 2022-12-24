@@ -11,6 +11,7 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @total_price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
     @billing = @total_price + @order.postage
+    
     @order.total_price = @total_price
 
     if params[:order][:select_address] == "address"
