@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-
-  namespace :public do
-    get 'customers/show'
-  end
-  
   devise_for :customers,skip: [:passwords],controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -45,11 +40,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
     get 'orders' => 'homes#top'
-  end
-
-  namespace :admin do
     resources :customers, only: [:index,:show,:edit,:update]
-    resources :orders, only: [:show]
   end
 
 end
