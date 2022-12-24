@@ -5,7 +5,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="background-color:#deb887;">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+
       <% if customer_signed_in? %>
         <h5>ようこそ、<%= current_customer.last_name %>さん！</h5>
       <% end %>
@@ -15,7 +15,7 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
-              <li><%= link_to customers_path(current_customer),class: 'btn btn-outline-light' do %> マイページ <% end %></li>
+              <li><%= link_to customers_path,class: 'btn btn-outline-light' do %> マイページ <% end %></li>
               <li><%= link_to items_path,class: 'btn btn-outline-light' do %> 商品一覧 <% end %></li>
               <li><%= link_to cart_items_path ,class: 'btn btn-outline-light' do %></i> カート <% end %></li>
               <li><%= link_to destroy_customer_session_path, method: :delete,class: 'btn btn-outline-light' do %> ログアウト <% end %></li>

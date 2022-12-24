@@ -1,7 +1,9 @@
 class Admin::ItemsController < ApplicationController
+  
+  before_action :authenticate_admin!
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
   end
 
   def new
@@ -15,8 +17,8 @@ class Admin::ItemsController < ApplicationController
       flash[:notice] = "You have created book successfully."
       redirect_to admin_item_path(@item.id)
     else
-      @items = Item.all
-      render :index
+      @genres = Genre.all
+      render :new
     end
   end
 
@@ -35,6 +37,7 @@ class Admin::ItemsController < ApplicationController
       flash[:notice] = "You have updated book successfully."
       redirect_to admin_item_path(@item.id)
     else
+      @genres = Genre.all
       render :edit
     end
   end
