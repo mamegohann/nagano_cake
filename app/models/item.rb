@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   has_many :orders, through: :order_details
   belongs_to :genre
 
-  validates :genre_id, :name, :price, presence: true
+  validates :genre_id, :name, :price, :introduction, :status, presence: true
 
   has_one_attached :image
 
