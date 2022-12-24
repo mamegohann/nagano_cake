@@ -3,7 +3,7 @@ class Public::DestinationsController < ApplicationController
   
   def index
     @destination = Destination.new
-    @destinations = Destination.all
+    @destinations = Destination.where(customer:current_customer)
   end
 
   def edit
