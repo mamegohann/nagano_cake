@@ -26,6 +26,12 @@ class Public::OrdersController < ApplicationController
       @order.name        = @destination.destination_name
 
     elsif params[:order][:select_address] == "new_address"
+      if params[:order][:postal_code] == ""
+         params[:order][:address] == ""
+         params[:order][:name] == ""
+         flash[:notice] = "正しい配送先を選択してください。"
+        redirect_to request.referer
+      end
       @order.postal_code = params[:order][:postal_code]
       @order.address     = params[:order][:address]
       @order.name        = params[:order][:name]
@@ -37,26 +43,24 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    
     @order = current_customer.orders.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
 
-    if params[:order][:select_address] == "new_address"
-      current_customer.destination.new(destination_params)
-      current_customer.destination.save
-    end
-
-    @cart_items = current_customer.cart_items
-    @cart_items.each do |cart_item|
-      @order_detail = OrderDetail.new
-      @order_detail.tax_price = cart_item.item.add_tax_price
-      @order_detail.quantity = cart_item.quantity
-      @order_detail.item_id = cart_item.item_id
-      @order_detail.order_id =  @order.id
-      @order_detail.save
-    end
+      @cart_items = current_customer.cart_items
+      @cart_items.each do |cart_item|
+        @order_detail = OrderDetail.new
+        @order_detail.tax_price = cart_item.item.add_tax_price
+        @order_detail.quantity = cart_item.quantity
+        @order_detail.item_id = cart_item.item_id
+        @order_detail.order_id =  @order.id
+        @order_detail.save
+      end
+    
     @cart_items.destroy_all
     redirect_to over_orders_path
+    
   end
 
   def index
