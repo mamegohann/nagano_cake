@@ -3,7 +3,7 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   validates :email, presence: true
   validates :encrypted_password, presence: true
   validates :last_name, presence: true
@@ -16,7 +16,7 @@ class Customer < ApplicationRecord
   has_many :orders
   has_many :cart_items
   has_many :destinations
-  
+
   def update_without_current_password(params, *options)
     params.delete(:current_password)
 
