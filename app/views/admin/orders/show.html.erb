@@ -7,7 +7,7 @@
         <tr>
           <td style="width: 20%">購入者</td>
           <td style="width: 80%">
-            <%= link_to admin_customer_path(@order) do %>
+            <%= link_to admin_customer_path(@order.customer_id) do %>
               <%= @order.customer.last_name + @order.customer.first_name %></td>
             <% end %>
         </tr>
@@ -35,13 +35,11 @@
           </td>
         </tr>
       </table>
-      <% end %>
+    <% end %>
     </div>
   </div>
   <div class="row justify-content-center">
     <div class="col-lg-7 mt-3">
-      <% @order_details.each do |order_detail| %>
-      <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
       <table class="table table-bordered border-dark">
           <tr class="table-secondary">
             <th>商品名</th>
@@ -50,19 +48,21 @@
             <th>小計</th>
             <th>制作ステータス</th>
           </tr>
-          <tr>
-            <td><%= order_detail.item.name %></td>
-            <td><%= order_detail.tax_price %></td>
-            <td><%= order_detail.quantity %></td>
-            <td><%= order_detail.quantity.to_i * order_detail.tax_price %>円</td>
-            <td>
-              <%= f.select :status, OrderDetail.statuses_i18n.invert, { }, {class: "mr-5"} %>
-              <%= f.submit "更新", class: "btn btn-success" %>
-            </td>
-          </tr>
+          <% @order_details.each do |order_detail| %>
+            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+            <tr>
+              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.tax_price %></td>
+              <td><%= order_detail.quantity %></td>
+              <td><%= order_detail.quantity.to_i * order_detail.tax_price %>円</td>
+              <td>
+                <%= f.select :status, OrderDetail.statuses_i18n.invert, { }, {class: "mr-5"} %>
+                <%= f.submit "更新", class: "btn btn-success" %>
+              </td>
+            </tr>
+            <% end %>
+          <% end %>
       </table>
-      <% end %>
-      <% end %>
     </div>
     <div class="col-lg-3 mt-3">
       <table class="table table-borderless">
