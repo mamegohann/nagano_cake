@@ -11,7 +11,7 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @total_price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
     @billing = @total_price + @order.postage
-    
+
     @order.total_price = @total_price
 
     if params[:order][:select_address] == "address"
@@ -26,21 +26,20 @@ class Public::OrdersController < ApplicationController
       @order.name        = @destination.destination_name
 
     elsif params[:order][:select_address] == "new_address"
-      if params[:order][:postal_code] == ""
-         params[:order][:address] == ""
-         params[:order][:name] == ""
+      if params[:order][:postal_code] == "" or params[:order][:address] == "" or params[:order][:name] == ""
          flash[:alert] = "正しい配送先を入力してください。"
         redirect_to request.referer
-      end
-      @destination = current_customer.destinations.new
-      @destination.destination_postal_code = params[:order][:postal_code]
-      @destination.destination_address     = params[:order][:address]
-      @destination.destination_name        = params[:order][:name]
-      @destination.customer_id = current_customer.id
-      if @destination.save
-        @order.postal_code = @destination.destination_postal_code
-        @order.address     = @destination.destination_address
-        @order.name        = @destination.destination_name
+
+      elsif @destination = current_customer.destinations.new
+        @destination.destination_postal_code = params[:order][:postal_code]
+        @destination.destination_address     = params[:order][:address]
+        @destination.destination_name        = params[:order][:name]
+        @destination.customer_id = current_customer.id
+        if @destination.save
+          @order.postal_code = @destination.destination_postal_code
+          @order.address     = @destination.destination_address
+          @order.name        = @destination.destination_name
+        end
       end
     end
     @order_new = Order.new
@@ -63,10 +62,10 @@ class Public::OrdersController < ApplicationController
         @order_detail.order_id =  @order.id
         @order_detail.save
       end
-    
+
     @cart_items.destroy_all
     redirect_to over_orders_path
-    
+
   end
 
   def index
@@ -82,10 +81,6 @@ class Public::OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:customer_id, :quantity, :item_id, :payment_method, :postal_code, :address, :name, :total_price)
-  end
-
-  def destination_params
-    params.require(:destination).permit(:address, :name, :postal_code)
   end
 
 end
