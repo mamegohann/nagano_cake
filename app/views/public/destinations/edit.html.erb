@@ -1,0 +1,28 @@
+<div class="containar">
+  <div class="row justify-content-center">
+    <div class="col-lg-9 mt-5">
+    <h2>配送先登録 / 一覧</h2><br>
+    <%= form_with model: @destination do |f| %>
+
+      <table class="table">
+        <tr>
+          <td style="width: 20%" >郵便番号（ハイフンなし）</td>
+          <td style="width: 20%"><%= f.text_field :destination_postal_code, class: "form-control" %></td>
+          <td style="width: 20%"></td>
+          <td style="width: 20%"></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td colspan="2"><%= f.text_field :destination_address, class: "form-control" %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>宛名</td>
+          <td><%= f.text_field :destination_name, class: "form-control" %></td>
+          <td></td>
+          <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
