@@ -10,7 +10,7 @@ ja:
           status:
             not_payment: "入金待ち"
             confirm_payment: "入金確認"
-            production: "製作中"
+            production: "制作中"
             shipping_preparation: "発送準備中"
             shipped: "発送済み"
         order_detail:
