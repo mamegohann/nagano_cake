@@ -40,6 +40,8 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-lg-7 mt-3">
+      <% @order_details.each do |order_detail| %>
+      <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
       <table class="table table-bordered border-dark">
           <tr class="table-secondary">
             <th>商品名</th>
@@ -48,22 +50,19 @@
             <th>小計</th>
             <th>制作ステータス</th>
           </tr>
-          <% @order_details.each do |order_detail| %>
-          
-            <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
-            <tr>
-              <td><%= order_detail.item.name %></td>
-              <td><%= order_detail.tax_price %></td>
-              <td><%= order_detail.quantity %></td>
-              <td><%= order_detail.quantity.to_i * order_detail.tax_price %>円</td>
-              <td>
-                <%= f.select :status, OrderDetail.statuses_i18n.invert, { }, {class: "mr-5"} %>
-                <%= f.submit "更新", class: "btn btn-success" %>
-              </td>
-            </tr>
-            <% end %>
-          <% end %>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.tax_price %></td>
+            <td><%= order_detail.quantity %></td>
+            <td><%= order_detail.quantity.to_i * order_detail.tax_price %>円</td>
+            <td>
+              <%= f.select :status, OrderDetail.statuses_i18n.invert, { }, {class: "mr-5"} %>
+              <%= f.submit "更新", class: "btn btn-success" %>
+            </td>
+          </tr>
       </table>
+      <% end %>
+      <% end %>
     </div>
     <div class="col-lg-3 mt-3">
       <table class="table table-borderless">
